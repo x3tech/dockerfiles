@@ -1,4 +1,5 @@
 FROM x3tech/arch-nginx-php
+MAINTAINER 3onyc
 
 RUN pacman -Sy --noconfirm mariadb mariadb-clients && \
     pacman -Scc --noconfirm && \

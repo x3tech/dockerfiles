@@ -1,4 +1,5 @@
 FROM x3tech/arch-nginx
+MAINTAINER 3onyc
 
 RUN pacman -Sy --noconfirm uwsgi uwsgi-plugin-php && \
     pacman -Scc --noconfirm && \

@@ -1,4 +1,5 @@
 FROM x3tech/arch-web-base
+MAINTAINER 3onyc
 
 RUN pacman -Sy --noconfirm nginx && \
     pacman -Scc --noconfirm && \

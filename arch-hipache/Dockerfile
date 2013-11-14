@@ -1,4 +1,5 @@
 FROM x3tech/arch-nodejs
+MAINTAINER 3onyc
 
 RUN pacman -Sy --noconfirm redis git python2-pip && \
     pacman -Scc --noconfirm && \ 

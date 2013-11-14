@@ -1,4 +1,5 @@
 FROM base/arch
+MAINTAINER 3onyc
 
 RUN echo "[x3tech]" >> /etc/pacman.conf && \
     echo "SigLevel = Never" >> /etc/pacman.conf && \

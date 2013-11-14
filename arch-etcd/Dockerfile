@@ -1,4 +1,5 @@
 FROM x3tech/arch-infra-base
+MAINTAINER 3onyc
 
 RUN pacman -Sy && \
     pacman -S --noconfirm etcd && \
