@@ -8,6 +8,5 @@ RUN pacman -Sy --noconfirm nginx && \
 
 ENV WEB_PORT 80
 EXPOSE 80
-VOLUME ["/srv/http"]
 
 ADD nginx.conf /etc/nginx/nginx.conf
