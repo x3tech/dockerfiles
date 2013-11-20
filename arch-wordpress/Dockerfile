@@ -3,6 +3,8 @@ MAINTAINER 3onyc
 
 RUN curl -SsL http://wordpress.org/wordpress-3.7.1.tar.gz | tar -C /tmp/ -zxvf - wordpress/ && \
     mv /tmp/wordpress/* /srv/http/ && \
+    chown -R http:http /srv/http/ && \
+    chmod -R og-rwx,u+rwX /srv/http/ && \
     pacman -S --noconfirm php-gd php-mcrypt
 
 ADD php.ini /etc/php/php.ini
