@@ -74,8 +74,13 @@ if __name__ == "__main__":
         try:
              redis.ping()
              client = etcd.Etcd(host=ETCD_HOST, port=ETCD_PORT) 
-        except (RedisConnectionError, RequestsConnectionError):
-            print "Waiting for Redis and Etcd..."
+        except RedisConnectionError as e:
+            print "Waiting for Redis..."
+            print e
+            time.sleep(1)
+        except RequestsConnectionError as e:
+            print "Waiting for Etcd..."
+            print e
             time.sleep(1)
         else:
             break
