@@ -4,16 +4,6 @@ import subprocess, urllib, time, os, signal, sys, glob
 def get_ip():
     return subprocess.check_output("ip a s eth0|sed -ne '/127.0.0.1/!{s/^[ \\t]*inet[ \\t]*\([0-9.]\+\)\/.*$/\\1/p}' | head -n1", shell=True).rstrip()
 
-def wait_for_etcd():
-    while True:
-        try:
-            urllib.urlopen("http://%s" % os.environ['ETCD_ADDR'])
-        except IOError:
-            print " [-] Waiting for etcd..."
-            time.sleep(1)    
-        else:
-            break
-
 def get_init_scripts(*args, **kwargs):
     return sorted(glob.glob('/opt/init.d/*'), *args, **kwargs)
 
