@@ -2,7 +2,7 @@
 import os, sys, subprocess
 
 IP_ADDR = os.environ['IP_ADDR']
-ETCD_ADDR=os.environ['ETCD_ADDR']
+ETCD_ADDR=os.environ['ETCD_PORT_4001_TCP'].replace('tcp://', '')
 HIPACHE_PATH=os.environ['HIPACHE_PATH']
 WEB_HOSTNAMES=os.environ['WEB_HOSTNAME'].split('|')
 WEB_PORT=os.environ.get('WEB_PORT', '80')
