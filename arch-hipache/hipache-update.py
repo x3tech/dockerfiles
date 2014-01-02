@@ -12,8 +12,8 @@ from requests.exceptions import ConnectionError as RequestsConnectionError
 ETCD_PATH=os.environ.get('ETCD_HIPACHE_PATH', '/hipache')
 ETCD_ADDR=os.environ.get('ETCD_ADDR', '127.0.0.1:4001')
 ETCD_HOST, ETCD_PORT = ETCD_ADDR.split(':')
-REDIS_HOST=os.environ.get('REDIS_HOST', '127.0.0.1')
-REDIS_PORT=os.environ.get('REDIS_PORT', 6379) 
+REDIS_HOST=os.environ.get('REDIS_PORT_6379_TCP_ADDR', '127.0.0.1')
+REDIS_PORT=os.environ.get('REDIS_PORT_6379_TCP_PORT', 6379)
 
 redis = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT)
 
