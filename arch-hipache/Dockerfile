@@ -4,9 +4,7 @@ MAINTAINER 3onyc
 RUN pacman -Sy --noconfirm redis git python2-pip && \
     pacman -Scc --noconfirm && \ 
     npm install -g hipache && \
-    pip2 install git+https://github.com/x3tech/etcd-py.git@EtcdWatch-prevValue requests redis && \
-    echo "[program:redis]" > /etc/supervisor.d/redis.ini && \
-    echo "command=/usr/bin/redis-server" >> /etc/supervisor.d/redis.ini && \
+    pip2 install git+https://github.com/transitorykris/etcd-py.git requests redis && \
     echo "[program:hipache]" > /etc/supervisor.d/hipache.ini && \
     echo "command=/usr/bin/hipache -c /etc/hipache.conf" >> /etc/supervisor.d/hipache.ini && \
     echo "[program:hipache-updater]" > /etc/supervisor.d/hipache-updater.ini && \
