@@ -7,5 +7,5 @@ RUN pacman -Sy && \
     echo "[program:etcd]" > /etc/supervisor.d/etcd.ini && \
     echo "command=/opt/start-etcd.sh" >> /etc/supervisor.d/etcd.ini
 
-ENV ETCD_MASTER_ADDR 172.17.42.1:7001
+EXPOSE 4001 7001
 ADD start-etcd.sh /opt/
