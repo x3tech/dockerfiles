@@ -11,5 +11,6 @@ EXPOSE 80
 
 VOLUME ["/srv/http/"]
 
+ADD index.html /srv/http/index.html
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD 30_nginx.py /opt/init.d/30_nginx.py
