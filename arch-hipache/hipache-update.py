@@ -6,6 +6,7 @@ import etcd
 import redis
 import sys
 
+from etcd.etcd import EtcdError
 from redis.exceptions import ConnectionError as RedisConnectionError
 from requests.exceptions import ConnectionError as RequestsConnectionError
 
@@ -56,8 +57,12 @@ def perform_action(action, domain, container_hostname, address):
 
 def updater():
     while True:
-        result = client.watch(ETCD_PATH)
-        perform_action(result.action, *get_from_result(result))
+        try:
+            result = client.watch(ETCD_PATH)
+            perform_action(result.action, *get_from_result(result))
+        except EtcdError as e:
+            print "Error during update..."
+            print e
 
 def init():
     for frontend in redis.keys("frontend:*"):
@@ -73,8 +78,9 @@ if __name__ == "__main__":
     
     while True:
         try:
-             redis.ping()
-             client = etcd.Etcd(host=ETCD_HOST, port=ETCD_PORT) 
+            redis.ping()
+            client = etcd.Etcd(host=ETCD_HOST, port=ETCD_PORT)
+            init()
         except RedisConnectionError as e:
             print "Waiting for Redis..."
             print e
@@ -83,8 +89,11 @@ if __name__ == "__main__":
             print "Waiting for Etcd..."
             print e
             time.sleep(1)
+        except EtcdError as e:
+            print "Error during init..."
+            print e
+            time.sleep(1)
         else:
             break
 
-    init()
     updater()
