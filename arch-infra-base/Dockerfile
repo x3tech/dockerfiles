@@ -1,7 +1,10 @@
-FROM x3tech/arch-supervisord
+FROM x3tech/arch
 MAINTAINER 3onyc
 
-RUN echo "[x3tech]" >> /etc/pacman.conf && \
+RUN pacman -Sy && \
+    pacman -S --noconfirm supervisor && \
+    pacman -Scc --noconfirm && \
+    echo "[x3tech]" >> /etc/pacman.conf && \
     echo "SigLevel = Never" >> /etc/pacman.conf && \
     echo "Server = http://repo.x3tech.com" >> /etc/pacman.conf && \
     mkdir /opt/init.d
