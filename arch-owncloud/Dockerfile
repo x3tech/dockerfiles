@@ -12,15 +12,16 @@ RUN pacman -Sy --noconfirm php-pgsql php-mcrypt php-intl ffmpeg owncloud && \
     sed -i "s/;extension=exif.so/extension=exif.so/g" /etc/php/php.ini && \
     sed -i "s/;extension=openssl.so/extension=openssl.so/g" /etc/php/php.ini && \
     sed -i "s/;extension=gd.so/extension=gd.so/g" /etc/php/php.ini && \
+    sed -i "s/;extension=xmlrpc.so/extension=xmlrpc.so/g" /etc/php/php.ini && \
     sed -i "s/;extension=iconv.so/extension=iconv.so/g" /etc/php/php.ini && \
     sed -i "s/;extension=pdo_pgsql.so/extension=pdo_pgsql.so/g" /etc/php/php.ini && \
     sed -i "s/;zend_extension=opcache.so/zend_extension=opcache.so/g" /etc/php/php.ini && \
-    sed -i "/^open_basedir =/d" /etc/php/php.ini
-
-RUN mkdir -p /opt/owncloud/{apps,data} && \
+    sed -i "/^open_basedir =/d" /etc/php/php.ini && \
+    mkdir -p /opt/owncloud/{apps,data} && \
     mv /usr/share/webapps/owncloud/config /opt/owncloud/config && \
     ln -s /opt/owncloud/config /usr/share/webapps/owncloud/config && \
     ln -s /opt/owncloud/data /usr/share/webapps/owncloud/data
+
 
 ADD user.config.php /opt/owncloud/config/
 ADD autoconfig.php /opt/owncloud/config/
