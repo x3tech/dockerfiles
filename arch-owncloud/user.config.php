@@ -6,7 +6,6 @@ $CONFIG = array(
     "dbuser" => getenv('PGSQL_ENV_PG_USER'),
     "dbpassword" => getenv('PGSQL_ENV_PG_PASSWORD'),
     "dbhost" => getenv('PGSQL_PORT_5432_TCP_ADDR'),
-    "passwordsalt" => getenv('OWNCLOUD_SALT'),
     "overwritehost" => getenv('OWNCLOUD_HOSTNAME'),
     'user_backends'=>array(),
     'apps_paths' => array (
