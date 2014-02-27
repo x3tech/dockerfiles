@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ARGS="-m${MEMCACHED_MEMORY} -t${MEMCACHED_THREADS}"
-if [ "${MEMCACHED_VERBOSE:-0}" -eq 1 ]; then
+if [ "${MEMCACHED_VERBOSE:-1}" -eq 1 ]; then
     ARGS="${ARGS} -v"
 fi
 
