@@ -1,13 +1,19 @@
-FROM x3tech/arch
+FROM stackbrew/ubuntu:13.10
 MAINTAINER 3onyc
 
-RUN pacman -Sy --noconfirm nginx && pacman -Scc --noconfirm
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
+    apt-get install -y nginx && \
+    apt-get clean
 
 EXPOSE 80
-VOLUME ["/srv/http"]
+VOLUME ["/var/www"]
 
-ADD run.sh /run.sh
-ADD index.html /srv/http/index.html
-ADD nginx.conf /etc/nginx/nginx.conf
+ADD start.sh /start
+ADD import.sh /import
+ADD export.sh /export
 
-CMD ["/run.sh"]
+ADD index.html /var/www/
+ADD nginx.conf /etc/nginx/
+
+CMD ["/start"]

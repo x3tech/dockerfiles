@@ -6,4 +6,4 @@ if [ ! -d "/var/log/nginx" ]; then
 fi
 
 echo "Starting NGINX..."
-exec /usr/bin/nginx
+exec /usr/sbin/nginx
