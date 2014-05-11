@@ -1,4 +1,4 @@
-FROM stackbrew/ubuntu:13.10
+FROM ubuntu:14.04
 MAINTAINER 3onyc
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
