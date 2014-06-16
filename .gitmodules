@@ -1,0 +1,3 @@
+[submodule "pgsql"]
+	path = pgsql
+	url = https://github.com/orchardup/docker-postgresql.git
