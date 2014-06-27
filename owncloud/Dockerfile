@@ -1,42 +1,29 @@
-FROM x3tech/arch-nginx-php
+FROM x3tech/nginx-php
 MAINTAINER 3onyc
 
-RUN pacman -Sy --noconfirm php-pgsql php-mcrypt php-intl ffmpeg owncloud && \
-    pacman -Scc --noconfirm && \
-    sed -i "s/;opcache.enable=0/opcache.enable=1/g" /etc/php/php.ini && \
-    sed -i "s/;extension=curl.so/extension=curl.so/g" /etc/php/php.ini && \
-    sed -i "s/;extension=mcrypt.so/extension=mcrypt.so/g" /etc/php/php.ini && \
-    sed -i "s/;extension=intl.so/extension=intl.so/g" /etc/php/php.ini && \
-    sed -i "s/;extension=zip.so/extension=zip.so/g" /etc/php/php.ini && \
-    sed -i "s/;extension=pgsql.so/extension=pgsql.so/g" /etc/php/php.ini && \
-    sed -i "s/;extension=exif.so/extension=exif.so/g" /etc/php/php.ini && \
-    sed -i "s/;extension=openssl.so/extension=openssl.so/g" /etc/php/php.ini && \
-    sed -i "s/;extension=gd.so/extension=gd.so/g" /etc/php/php.ini && \
-    sed -i "s/;extension=xmlrpc.so/extension=xmlrpc.so/g" /etc/php/php.ini && \
-    sed -i "s/;extension=iconv.so/extension=iconv.so/g" /etc/php/php.ini && \
-    sed -i "s/;extension=pdo_pgsql.so/extension=pdo_pgsql.so/g" /etc/php/php.ini && \
-    sed -i "s/;zend_extension=opcache.so/zend_extension=opcache.so/g" /etc/php/php.ini && \
-    sed -i "/^open_basedir =/d" /etc/php/php.ini && \
-    mkdir -p /opt/owncloud/{apps,data} && \
-    mv /usr/share/webapps/owncloud/config /opt/owncloud/config && \
-    ln -s /opt/owncloud/config /usr/share/webapps/owncloud/config && \
-    ln -s /opt/owncloud/data /usr/share/webapps/owncloud/data
+ADD owncloud-6.0.3.tar.bz2 /var/www/
 
-ADD user.config.php /opt/owncloud/config/
-ADD autoconfig.php /opt/owncloud/config/
+=======
+# Install dependencies
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
+    apt-get install -y php5-pgsql php5-common php5-gd php-xml-parser php5-intl php5-mcrypt php5-curl php5-json php5-imagick && \
+    apt-get clean && \
+    chown -R www-data:www-data /var/www/owncloud
+
+ADD user.config.php.tpl /var/www/owncloud/config/
+ADD autoconfig.php.tpl /var/www/owncloud/config/
 ADD nginx.conf /etc/nginx/
 ADD uwsgi.ini /etc/
-
-RUN chown -R http:http /opt/owncloud
+ADD go-envtpl /bin/envtpl
+ADD run.sh /run.sh
 
 # Should be specified on creation
-ENV OWNCLOUD_HOSTNAME example.com
-ENV OWNCLOUD_SALT changeme!
+ENV OWNCLOUD_HOSTNAME localhost
 ENV OWNCLOUD_ADMIN_LOGIN admin
 ENV OWNCLOUD_ADMIN_PASS changeme!
 
 # Web port
-ENV WEB_PORT 80
 EXPOSE 80
 
-VOLUME ["/opt/owncloud/"]
+CMD ["/run.sh"]
