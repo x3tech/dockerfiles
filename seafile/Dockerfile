@@ -23,8 +23,10 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     chmod -R u+rwX,g+rX-w,o-rwx /opt/seafile && \
     chmod -R g+rX-w,og+rX /opt/seafile/seafile-server-*
 
-VOLUME /opt/seafile
-
+ADD scripts/setup-seafile.sh /opt/seafile/seafile-server-3.0.4/setup-seafile.sh
+ADD scripts/check_init_admin.py /opt/seafile/seafile-server-3.0.4/check_init_admin.py
 ADD scripts/run.sh /run.sh
+
+VOLUME /opt/seafile/data
 
 CMD ["/run.sh"]
