@@ -24,7 +24,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 
 VOLUME /opt/seafile
 
-ADD run.sh /run.sh
-ADD modify-setup-seafile.sh /modify-setup-seafile.sh
+ADD scripts/run.sh /run.sh
 
 CMD ["/run.sh"]
