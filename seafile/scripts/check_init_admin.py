@@ -352,8 +352,8 @@ def main():
     if not need_create_admin():
         return
 
-    email = ask_admin_email()
-    passwd = ask_admin_password()
+    email = os.environ["ADMIN_EMAIL"]
+    passwd = os.environ["ADMIN_PASSWORD"]
 
     create_admin(email, passwd)
 

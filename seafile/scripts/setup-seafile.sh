@@ -2,7 +2,7 @@
 
 SCRIPT=$(readlink -f "$0")
 INSTALLPATH=$(dirname "${SCRIPT}")
-TOPDIR=$(dirname "${INSTALLPATH}")
+TOPDIR=/opt/seafile/data
 default_ccnet_conf_dir=${TOPDIR}/ccnet
 default_seafile_data_dir=${TOPDIR}/seafile-data
 default_seahub_db=${TOPDIR}/seahub.db
@@ -352,22 +352,21 @@ function copy_user_manuals() {
 # Main workflow of this script 
 # -------------------------------------------
 
-check_root;
-sleep .5
+# Defaults for automated install
+use_existing_ccnet="false"
+use_existing_seafile="false"
+seafile_data_dir="${default_seafile_data_dir}"
+
 check_sanity;
-welcome;
-sleep .5
 check_system_dependency;
 sleep .5
 
-check_existing_ccnet;
 if [[ ${use_existing_ccnet} != "true" ]]; then
-    get_server_name;
-    get_server_ip_or_domain;
+    server_name="${SERVER_NAME}";
+    ip_or_domain="${SERVER_ADDR}";
     get_ccnet_server_port;
 fi
 
-get_seafile_data_dir;
 if [[ ${use_existing_seafile} != "true" ]]; then
     get_seafile_server_port
     get_httpserver_port
@@ -394,8 +393,6 @@ else
 fi
 
 echo
-echo "If you are OK with the configuration, press [ENTER] to continue."
-read dummy
 
 ccnet_init=${INSTALLPATH}/seafile/bin/ccnet-init
 seaf_server_init=${INSTALLPATH}/seafile/bin/seaf-server-init
@@ -458,12 +455,6 @@ fi
 # -------------------------------------------
 # Seahub related config
 # -------------------------------------------
-echo "-----------------------------------------------------------------"
-echo "Seahub is the web interface for seafile server."
-echo "Now let's setup seahub configuration. Press [ENTER] to continue"
-echo "-----------------------------------------------------------------"
-echo
-read dummy
 
 # echo "Please specify the email address and password for the seahub administrator."
 # echo "You can use them to login as admin on your seahub website."
@@ -573,7 +564,7 @@ dest_avatar_dir=${TOPDIR}/seahub-data/avatars
 if [[ ! -d ${dest_avatar_dir} ]]; then
     mkdir -p "${TOPDIR}/seahub-data"
     mv "${orig_avatar_dir}" "${dest_avatar_dir}"
-    ln -s ../../../seahub-data/avatars ${media_dir}
+    ln -s ${dest_avatar_dir} ${orig_avatar_dir}
 fi
 
 # Make a seafile-server symlink, like this:
@@ -583,7 +574,7 @@ fi
 seafile_server_symlink=${TOPDIR}/seafile-server-latest
 echo
 echo -n "creating seafile-server-latest symbolic link ... "
-if ! ln -s $(basename ${INSTALLPATH}) ${seafile_server_symlink}; then
+if ! ln -s ../$(basename ${INSTALLPATH}) ${seafile_server_symlink}; then
     echo
     echo
     echo "Failed to create symbolic link ${seafile_server_symlink}"
