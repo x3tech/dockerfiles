@@ -1,5 +1,13 @@
-build: seafile-server_2.1.5_x86-64.tar.gz
+VERSION=3.0.4
+FILENAME=seafile-server_$(VERSION)_x86-64.tar.gz
+URL=https://bitbucket.org/haiwen/seafile/downloads/$(FILENAME)
+build: source
 	docker build -t x3tech/seafile .
 
-seafile-server_2.1.5_x86-64.tar.gz:
-	wget https://bitbucket.org/haiwen/seafile/downloads/seafile-server_2.1.5_x86-64.tar.gz
+source: $(FILENAME)
+
+$(FILENAME):
+	wget $(URL)
+
+clean:
+	rm -rfv seafile-server{_,-}*
