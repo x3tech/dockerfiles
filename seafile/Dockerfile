@@ -1,14 +1,15 @@
-FROM stackbrew/ubuntu:13.10
+FROM stackbrew/ubuntu:14.04
 MAINTAINER 3onyc
 
 EXPOSE 10001 12001 8000 8082
 
-ADD seafile-server_2.1.5_x86-64.tar.gz /opt/seafile/
-
+ENV SEAFILE_VERSION 3.0.4
 ENV SERVER_NAME example
 ENV SERVER_ADDR seafile.example.com
 ENV ADMIN_EMAIL admin@example.com
 ENV ADMIN_PASSWORD changeme!
+
+ADD seafile-server_3.0.4_x86-64.tar.gz /opt/seafile/
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
