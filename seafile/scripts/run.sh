@@ -15,7 +15,7 @@ main() {
     cd /opt/seafile/seafile-server-*
     rewrite_topdir
 
-    if [ ! -e /opt/seafile/data/blocks ]; then
+    if [ ! -e /opt/seafile/data/seafile-data/blocks ]; then
         su seafile -c "./setup-seafile.sh"
     fi
 
