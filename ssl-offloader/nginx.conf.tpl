@@ -33,7 +33,11 @@ http {
         ssl_prefer_server_ciphers on;
         ssl_session_cache shared:SSL:50m;
 
+        client_max_body_size 100M;
+        client_body_buffer_size 1m;
+
         location / {
+            proxy_set_header Host $http_host;
             proxy_pass http://backends;
         }
     }
