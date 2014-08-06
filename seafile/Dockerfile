@@ -3,13 +3,13 @@ MAINTAINER 3onyc
 
 EXPOSE 10001 12001 8000 8082
 
-ENV SEAFILE_VERSION 3.0.4
+ENV SEAFILE_VERSION 3.1.1
 ENV SERVER_NAME example
 ENV SERVER_ADDR seafile.example.com
 ENV ADMIN_EMAIL admin@example.com
 ENV ADMIN_PASSWORD changeme!
 
-ADD seafile-server_3.0.4_x86-64.tar.gz /opt/seafile/
+ADD seafile-server_3.1.1_x86-64.tar.gz /opt/seafile/
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
@@ -23,8 +23,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     chmod -R u+rwX,g+rX-w,o-rwx /opt/seafile && \
     chmod -R g+rX-w,og+rX /opt/seafile/seafile-server-*
 
-ADD scripts/setup-seafile.sh /opt/seafile/seafile-server-3.0.4/setup-seafile.sh
-ADD scripts/check_init_admin.py /opt/seafile/seafile-server-3.0.4/check_init_admin.py
+ADD scripts/setup-seafile.sh /opt/seafile/seafile-server-3.1.1/setup-seafile.sh
+ADD scripts/check_init_admin.py /opt/seafile/seafile-server-3.1.1/check_init_admin.py
 ADD scripts/run.sh /run.sh
 
 VOLUME /opt/seafile/data

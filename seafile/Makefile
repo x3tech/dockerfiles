@@ -1,4 +1,4 @@
-VERSION=3.0.4
+VERSION=3.1.1
 FILENAME=seafile-server_$(VERSION)_x86-64.tar.gz
 URL=https://bitbucket.org/haiwen/seafile/downloads/$(FILENAME)
 build: source
