@@ -1,8 +1,7 @@
 FROM stackbrew/ubuntu:13.10
 MAINTAINER 3onyc
 
-RUN export DEBIAN_FRONTEND=noninteractive && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y memcached && \
     apt-get clean
 

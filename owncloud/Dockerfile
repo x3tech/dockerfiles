@@ -22,7 +22,6 @@ RUN pacman -Sy --noconfirm php-pgsql php-mcrypt php-intl ffmpeg owncloud && \
     ln -s /opt/owncloud/config /usr/share/webapps/owncloud/config && \
     ln -s /opt/owncloud/data /usr/share/webapps/owncloud/data
 
-
 ADD user.config.php /opt/owncloud/config/
 ADD autoconfig.php /opt/owncloud/config/
 ADD nginx.conf /etc/nginx/

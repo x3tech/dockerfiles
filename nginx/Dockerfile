@@ -1,8 +1,7 @@
 FROM x3tech/runit
 MAINTAINER 3onyc
 
-RUN export DEBIAN_FRONTEND=noninteractive && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y nginx nginx-extras && \
     apt-get clean
 

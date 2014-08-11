@@ -12,10 +12,8 @@ ENV ADMIN_PASSWORD changeme!
 
 ADD seafile-server_3.1.1_x86-64.tar.gz /opt/seafile/
 
-RUN export DEBIAN_FRONTEND=noninteractive && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y python2.7-mysqldb python-setuptools python-simplejson python-imaging && \
-    export DEBIAN_FRONTEND=noninteractive && \
     apt-get install -y sqlite3 && \
     apt-get clean && \
     mkdir -p /opt/seafile/data && \

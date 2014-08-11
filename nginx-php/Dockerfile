@@ -1,8 +1,7 @@
 FROM x3tech/nginx
 MAINTAINER 3onyc
 
-RUN export DEBIAN_FRONTEND=noninteractive && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y uwsgi-plugin-php && \
     apt-get clean
 

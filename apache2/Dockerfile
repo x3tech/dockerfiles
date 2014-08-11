@@ -1,8 +1,7 @@
 FROM x3tech/runit
 MAINTAINER 3onyc
 
-RUN export DEBIAN_FRONTEND=noninteractive && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y apache2 apache2-mpm-event && \
     apt-get clean && \
     rm -rf /var/www/*

@@ -3,8 +3,7 @@ MAINTAINER 3onyc
 
 ADD http://repo.x3tech.com/deb/go-envtpl_1.0_amd64.deb /tmp/go-envtpl_1.0_amd64.deb
 
-RUN export DEBIAN_FRONTEND=noninteractive && \
-    dpkg -i /tmp/go-envtpl_1.0_amd64.deb && \
+RUN dpkg -i /tmp/go-envtpl_1.0_amd64.deb && \
     rm /tmp/go-envtpl_1.0_amd64.deb && \
     rm /var/www/index.html
 
