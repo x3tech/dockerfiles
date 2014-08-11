@@ -3,7 +3,7 @@ MAINTAINER 3onyc
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get install -y nginx && \
+    apt-get install -y nginx nginx-extras && \
     apt-get clean
 
 EXPOSE 80
