@@ -15,6 +15,8 @@ ADD uwsgi.ini /etc/uwsgi.ini
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD wp-config.tpl.php /var/www/wordpress/wp-config.tpl.php
 
+ENV BACKUP_FOLDER /var/www/wordpress/wp-content
+
 VOLUME ["/var/www/wordpress/wp-content/"]
 EXPOSE 80
 
