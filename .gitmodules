@@ -1,0 +1,84 @@
+[submodule "apache2"]
+	path = apache2
+	url = git@github.com:x3tech-docker/apache2
+[submodule "arch-base"]
+	path = arch-base
+	url = git@github.com:x3tech-docker/arch-base
+[submodule "etcd"]
+	path = etcd
+	url = git@github.com:x3tech-docker/etcd
+[submodule "gogs"]
+	path = gogs
+	url = git@github.com:x3tech-docker/gogs
+[submodule "hipache"]
+	path = hipache
+	url = git@github.com:x3tech-docker/hipache
+[submodule "infra-base"]
+	path = infra-base
+	url = git@github.com:x3tech-docker/infra-base
+[submodule "memcached"]
+	path = memcached
+	url = git@github.com:x3tech-docker/memcached
+[submodule "mysql"]
+	path = mysql
+	url = git@github.com:x3tech-docker/mysql
+[submodule "nginx"]
+	path = nginx
+	url = git@github.com:x3tech-docker/nginx
+[submodule "nginx-hhvm"]
+	path = nginx-hhvm
+	url = git@github.com:x3tech-docker/nginx-hhvm
+[submodule "nginx-index"]
+	path = nginx-index
+	url = git@github.com:x3tech-docker/nginx-index
+[submodule "nginx-php"]
+	path = nginx-php
+	url = git@github.com:x3tech-docker/nginx-php
+[submodule "neovim"]
+	path = neovim
+	url = git@github.com:x3tech-docker/neovim
+[submodule "nodejs"]
+	path = nodejs
+	url = git@github.com:x3tech-docker/nodejs
+[submodule "owncloud"]
+	path = owncloud
+	url = git@github.com:x3tech-docker/owncloud
+[submodule "radicale"]
+	path = radicale
+	url = git@github.com:x3tech-docker/radicale
+[submodule "redis"]
+	path = redis
+	url = git@github.com:x3tech-docker/redis
+[submodule "reloadable-haproxy"]
+	path = reloadable-haproxy
+	url = git@github.com:x3tech-docker/reloadable-haproxy
+[submodule "runit"]
+	path = runit
+	url = git@github.com:x3tech-docker/runit
+[submodule "seafile"]
+	path = seafile
+	url = git@github.com:x3tech-docker/seafile
+[submodule "ssh"]
+	path = ssh
+	url = git@github.com:x3tech-docker/ssh
+[submodule "ssl-offloader"]
+	path = ssl-offloader
+	url = git@github.com:x3tech-docker/ssl-offloader
+[submodule "supervisord"]
+	path = supervisord
+	url = git@github.com:x3tech-docker/supervisord
+[submodule "ttrss"]
+	path = ttrss
+	url = git@github.com:x3tech-docker/ttrss
+[submodule "vulcand"]
+	path = vulcand
+	url = git@github.com:x3tech-docker/vulcand
+[submodule "wordpress"]
+	path = wordpress
+	url = git@github.com:x3tech-docker/wordpress
+[submodule "znc"]
+	path = znc
+	url = git@github.com:x3tech-docker/znc
+[submodule "nginx-static"]
+	path = nginx-static
+	url = git@github.com:x3tech-docker/nginx-static
