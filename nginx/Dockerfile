@@ -8,6 +8,9 @@ RUN apt-get update && \
 EXPOSE 80
 VOLUME ["/var/www"]
 
+ENV BACKUP_FOLDER /var/www
+ENV BACKUP_TARGET /backups
+
 ADD import.sh /import
 ADD export.sh /export
 ADD service /etc/service

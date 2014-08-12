@@ -1,14 +1,34 @@
 #!/bin/bash
-BACKUP_FOLDER="/backups"
-BACKUP_FILENAME="www_$(date '+%Y-%m-%d_%H-%M-%S').tar.gz"
-
-if [ ! -d "$BACKUP_FOLDER" ]; then
-    mkdir -p "$BACKUP_FOLDER"
+if [ -z "$BACKUP_FOLDER" ]; then
+    echo "BACKUP_FOLDER not specified, exiting"
+    exit 1
 fi
 
-tar --gzip \
-    --create \
-    --verbose \
-    --file "${BACKUP_FOLDER}/${BACKUP_FILENAME}" \
-    -C "/var" \
-    www
+if [ -z "$BACKUP_TARGET" ]; then
+    echo "BACKUP_TARGET not specified, exiting"
+    exit 1
+fi
+
+if [ ! -d "$BACKUP_FOLDER" ]; then
+    echo "BACKUP_FOLDER doesn't exist, exiting"
+    exit 1
+fi
+
+readonly BACKUP_FILENAME="$(basename "$BACKUP_FOLDER")_$(date '+%Y-%m-%d_%H-%M-%S').tar.gz"
+
+create_target() {
+    if [ ! -d "$BACKUP_TARGET" ]; then
+        mkdir -p "$BACKUP_TARGET"
+    fi
+}
+
+main() {
+    tar --gzip \
+        --create \
+        --verbose \
+        --file "${BACKUP_TARGET}/${BACKUP_FILENAME}" \
+        --directory "$(dirname "$BACKUP_FOLDER")" \
+        "$(basename "$BACKUP_FOLDER")"
+}
+
+main
