@@ -1,14 +1,21 @@
-FROM x3tech/arch-nginx-php
+FROM x3tech/nginx-php
 MAINTAINER 3onyc
 
-RUN curl -SsL http://wordpress.org/wordpress-3.8.tar.gz | tar -C /tmp/ --exclude="wp-config-sample.php" -zxvf - wordpress/ && \
-    mv /tmp/wordpress/* /srv/http/ && \
-    chown -R http:http /srv/http/ && \
-    chmod -R og-rwx,u+rwX /srv/http/ && \
-    pacman -S --noconfirm php-gd php-mcrypt
+ADD wordpress-3.9.2.tar.gz /var/www/
+RUN chown -R www-data:www-data /var/www/wordpress/ && \
+    chmod -R og-rwx,u+rX /var/www/ && \
+    chmod -R u+w /var/www/wordpress/wp-content/ && \
+    apt-get update && \
+    apt-get install -y php5-gd php5-mcrypt php5-mysql && \
+    apt-get clean
 
-ADD php.ini /etc/php/php.ini
+ADD run.sh /run.sh
+ADD build/bin/envtpl /bin/envtpl
+ADD uwsgi.ini /etc/uwsgi.ini
 ADD nginx.conf /etc/nginx/nginx.conf
-ADD wp-config.php /srv/http/wp-config.php
+ADD wp-config.tpl.php /var/www/wordpress/wp-config.tpl.php
 
-VOLUME ["/srv/http/"]
+VOLUME ["/var/www/wordpress/wp-content/"]
+EXPOSE 80
+
+CMD ["/run.sh"]

@@ -1,8 +1,8 @@
 <?php
-define('DB_NAME', getenv('MYSQL_ENV_MYSQL_USER') . '_' . getenv('MYSQL_ENV_MYSQL_DB'));
-define('DB_USER', getenv('MYSQL_ENV_MYSQL_USER'));
-define('DB_PASSWORD', getenv('MYSQL_ENV_MYSQL_PASSWORD'));
-define('DB_HOST', getenv('MYSQL_PORT_3306_TCP_ADDR') . ":" . getenv('MYSQL_PORT_3306_TCP_PORT'));
+define('DB_NAME', '{{ .MYSQL_ENV_MYSQL_DATABASE }}');
+define('DB_USER', '{{ .MYSQL_ENV_MYSQL_USER }}');
+define('DB_PASSWORD', '{{ .MYSQL_ENV_MYSQL_PASSWORD }}');
+define('DB_HOST', '{{ .MYSQL_PORT_3306_TCP_ADDR }}' . ":" . '{{ .MYSQL_PORT_3306_TCP_PORT }}');
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
@@ -19,8 +19,8 @@ $table_prefix  = 'wp_';
 define('WPLANG', '');
 define('WP_DEBUG', false);
 
-if ( !defined('ABSPATH') ) {
-  define('ABSPATH', dirname(__FILE__) . '/');
+if (!defined('ABSPATH')) {
+    define('ABSPATH', dirname(__FILE__) . '/');
 }
 
 require_once(ABSPATH . 'wp-settings.php');
