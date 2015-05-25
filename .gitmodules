@@ -43,6 +43,9 @@
 [submodule "owncloud"]
 	path = owncloud
 	url = git@github.com:x3tech-docker/owncloud
+[submodule "postgres"]
+	path = postgres
+	url = git@github.com:x3tech-docker/postgres
 [submodule "radicale"]
 	path = radicale
 	url = git@github.com:x3tech-docker/radicale
